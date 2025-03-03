@@ -1,36 +1,147 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Eventrue - Public Event Photo Sharing Platform
 
-## Getting Started
+## 🚀 Project Overview
 
-First, run the development server:
+Eventrue is a mobile-first web application designed to enhance public event experiences by allowing users to browse events, take photos, and share memories.
 
+## 📋 Prerequisites
+
+- Docker
+- Docker Compose
+- Make
+- Node.js (v18+)
+- Cloudinary Account
+- PostgreSQL (optional, for local development)
+
+## 🔧 Environment Setup
+
+### 1. Clone the Repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yourusername/eventrue.git
+cd eventrue
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Configure Environment Variables
+Create a `.env` file in the project root with the following variables:
+```
+# Cloudinary Credentials
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Database URLs
+DATABASE_URL_DEV=postgresql://dev_user:dev_password@localhost:5432/eventrue_dev
+DATABASE_URL_PROD=postgresql://prod_user:prod_password@localhost:5432/eventrue_prod
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. Development Environment
 
-## Learn More
+#### Quick Start
+```bash
+# Check environment variables
+make check-env
 
-To learn more about Next.js, take a look at the following resources:
+# Set up and start development environment
+make setup-dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### Individual Development Commands
+```bash
+# Start development services
+make dev-up
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Stop development services
+make dev-down
 
-## Deploy on Vercel
+# View development logs
+make dev-logs
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Rebuild development environment
+make dev-rebuild
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Run database migrations
+make migrate-dev
+
+# Seed development database
+make seed-dev
+```
+
+### 4. Production Environment
+
+#### Quick Start
+```bash
+# Check environment variables
+make check-env
+
+# Set up and start production environment
+make setup-prod
+```
+
+#### Individual Production Commands
+```bash
+# Start production services
+make prod-up
+
+# Stop production services
+make prod-down
+
+# View production logs
+make prod-logs
+
+# Rebuild production environment
+make prod-rebuild
+
+# Run database migrations
+make migrate-prod
+
+# Seed production database
+make seed-prod
+```
+
+## 🛠️ Project Structure
+
+```
+eventrue/
+├── prisma/             # Database schema and migrations
+├── src/
+│   ├── app/            # Next.js app router
+│   │   ├── api/        # API route handlers
+│   │   └── events/     # Event-related pages
+│   ├── components/     # Reusable React components
+│   └── styles/         # CSS and styling
+├── Dockerfile.dev      # Development Dockerfile
+├── Dockerfile.prod     # Production Dockerfile
+├── docker-compose.yml  # Docker Compose configuration
+├── Makefile            # Development and deployment commands
+└── README.md           # Project documentation
+```
+
+## 🌟 Key Features
+
+- Mobile-first event browsing
+- Real-time photo capture
+- Cloud image storage
+- Interactive event maps
+- QR Code event sharing
+
+## 🔍 Troubleshooting
+
+- Ensure all environment variables are set
+- Check Docker and Docker Compose versions
+- Verify Cloudinary credentials
+
+## 📄 License
+
+[Your License Here]
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📞 Support
+
+For issues and questions, please open a GitHub issue or contact support@eventrue.com

@@ -1,7 +1,18 @@
-import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: "standalone",
+  reactStrictMode: true,
 
-const nextConfig: NextConfig = {
-  /* config options here */
+  env: {
+    DATABASE_URL: process.env.DATABASE_URL,
+    CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
+  },
+
+  poweredByHeader: false,
+
+  images: {
+    domains: ["res.cloudinary.com", "cloudinary.com"],
+  },
 };
 
-export default nextConfig;
+module.exports = nextConfig;

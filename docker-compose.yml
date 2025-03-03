@@ -1,0 +1,59 @@
+# docker-compose.yml
+version: "3.8"
+
+services:
+  dev-db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: crwod-gather
+      POSTGRES_USER: dev_user
+      POSTGRES_PASSWORD: dev_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - dev-db-data:/var/lib/postgresql/data
+
+  dev-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      target: development
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - DATABASE_URL=postgresql://dev_user:dev_password@dev-db:5432/eventrue_dev
+      - NEXT_PUBLIC_API_URL=http://localhost:3000/api
+      - CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME}
+      - CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}
+      - CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}
+    depends_on:
+      - dev-db
+
+  prod-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+    networks:
+      - default
+      - external_network
+
+  cloudinary-proxy:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    environment:
+      - CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME}
+
+networks:
+  external_network:
+    driver: bridge
+volumes:
+  dev-db-data:
