@@ -1,8 +1,10 @@
 import "./globals.css";
+import type { Metadata } from "next";
+import { HeroUIProvider } from "@heroui/react";
 
-export const metadata = {
-  title: "Eventrue - Public Event Photo Sharing",
-  description: "Take and share photos at public events",
+export const metadata: Metadata = {
+  title: "Crowd Gather - Public Event Photo Sharing",
+  description: "Share and capture moments at public events",
 };
 
 export default function RootLayout({
@@ -11,9 +13,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="light crowd-gather-theme">
       <body className="min-h-screen">
-        {children}
+        <HeroUIProvider>{children}</HeroUIProvider>
       </body>
     </html>
   );
