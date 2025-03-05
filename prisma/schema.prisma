@@ -7,22 +7,196 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Enum for user roles with granular permissions
+enum UserRole {
+  ADMIN // Full platform access and management
+  ORGANIZER // Can create and manage events
+  MODERATOR // Can moderate content, manage photos
+  JOURNALIST // Special access for media coverage
+  PARTICIPANT // Standard event attendee
+  BLOCKED // Restricted access due to violations
+}
+
+// Enum for event status and visibility
+enum EventStatus {
+  DRAFT // Event created but not published
+  PUBLISHED // Event is active and visible
+  CANCELLED // Event has been cancelled
+  COMPLETED // Event has already occurred
+}
+
+// Enum for photo moderation status
+enum PhotoModerationStatus {
+  PENDING // Awaiting review
+  APPROVED // Visible to all
+  REJECTED // Hidden from public view
+}
+
+// Enum for event participation status
+enum ParticipationStatus {
+  INTERESTED // User is interested in the event
+  REGISTERED // User has registered for the event
+  ATTENDED // User has actually attended the event
+  CANCELLED // User has cancelled participation
+}
+
+model User {
+  id       String     @id @default(uuid())
+  email    String     @unique
+  password String
+  name     String
+  username String?    @unique
+  avatar   String?
+  bio      String?
+  role     UserRole   @default(PARTICIPANT)
+  status   UserStatus @default(ACTIVE)
+
+  // Authentication and security
+  emailVerified Boolean   @default(false)
+  lastLogin     DateTime?
+  loginAttempts Int       @default(0)
+
+  // Relationships
+  createdEvents  Event[]              @relation("EventCreator")
+  participations EventParticipation[]
+  photos         Photo[]
+  comments       EventComment[]
+
+  // Moderation features
+  reportsMade     UserReport[] @relation("ReportedBy")
+  reportsReceived UserReport[] @relation("ReportedUser")
+
+  // Tracking
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Additional user status for account management
+enum UserStatus {
+  ACTIVE
+  SUSPENDED
+  DELETED
+}
+
 model Event {
-  id          String   @id @default(uuid())
+  id          String  @id @default(uuid())
   name        String
   description String
   picture     String?
-  address     Json
-  startAt     DateTime
-  endAt       DateTime
-  createdAt   DateTime @default(now())
-  photos      Photo[]
+
+  // Location details
+  address   Json
+  latitude  Float?
+  longitude Float?
+
+  // Event timing and status
+  startAt DateTime
+  endAt   DateTime
+  status  EventStatus @default(PUBLISHED)
+
+  // Organizational details
+  createdBy String
+  creator   User   @relation("EventCreator", fields: [createdBy], references: [id])
+
+  // Relational fields
+  photos         Photo[]
+  comments       EventComment[]
+  participations EventParticipation[]
+
+  // Tracking and metadata
+  maxParticipants Int?
+  tags            String[]
+  category        String?
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model EventParticipation {
+  id      String @id @default(uuid())
+  eventId String
+  userId  String
+
+  event Event @relation(fields: [eventId], references: [id])
+  user  User  @relation(fields: [userId], references: [id])
+
+  status       ParticipationStatus @default(INTERESTED)
+  registeredAt DateTime            @default(now())
+
+  // Optional additional details
+  additionalGuests    Int     @default(0)
+  specialRequirements String?
+
+  @@unique([eventId, userId])
 }
 
 model Photo {
-  id         String   @id @default(uuid())
-  eventId    String
-  event      Event    @relation(fields: [eventId], references: [id])
-  url        String
+  id      String @id @default(uuid())
+  eventId String
+  userId  String
+
+  event Event @relation(fields: [eventId], references: [id])
+  user  User  @relation(fields: [userId], references: [id])
+
+  url         String
+  description String?
+
+  // Moderation details
+  moderationStatus PhotoModerationStatus @default(PENDING)
+  moderatedBy      String?
+  moderatedAt      DateTime?
+
+  // Engagement metrics
+  likes Int @default(0)
+
   uploadedAt DateTime @default(now())
+}
+
+model EventComment {
+  id      String @id @default(uuid())
+  eventId String
+  userId  String
+
+  event Event @relation(fields: [eventId], references: [id])
+  user  User  @relation(fields: [userId], references: [id])
+
+  content         String
+  parentCommentId String?
+  parentComment   EventComment?  @relation("CommentReplies", fields: [parentCommentId], references: [id])
+  replies         EventComment[] @relation("CommentReplies")
+
+  // Moderation and tracking
+  moderationStatus CommentModerationStatus @default(VISIBLE)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum CommentModerationStatus {
+  VISIBLE
+  HIDDEN
+  FLAGGED
+}
+
+model UserReport {
+  id               String @id @default(uuid())
+  reportedUserId   String
+  reportedByUserId String
+
+  reportedUser User @relation("ReportedUser", fields: [reportedUserId], references: [id])
+  reportedBy   User @relation("ReportedBy", fields: [reportedByUserId], references: [id])
+
+  reason  String
+  details String?
+  status  ReportStatus @default(PENDING)
+
+  createdAt DateTime @default(now())
+}
+
+enum ReportStatus {
+  PENDING
+  REVIEWED
+  RESOLVED
+  DISMISSED
 }
