@@ -1,4 +1,5 @@
 // src/app/events/[id]/page.tsx
+import { Suspense } from 'react';
 import EventDetailComponent from '@/components/events/EventDetailComponent';
 
 interface Event {
@@ -21,42 +22,42 @@ interface Photo {
   uploadedAt: string;
 }
 
-// Simulate fetching a single event
+// Mock function to fetch a single event
 async function getEvent(id: string): Promise<Event> {
-  // Mock data - in a real app, fetch from API or database
+  // In a real app, fetch from API or database
   return {
     id,
-    name: "Grand débat national sur la transition écologique",
-    description: "Rejoignez-nous pour un débat ouvert sur les enjeux environnementaux actuels et les politiques de transition écologique. Tous les citoyens sont invités à participer et à partager leurs opinions dans cette discussion cruciale pour notre avenir commun.\n\nAu programme :\n- Présentations d'experts en politique environnementale\n- Tables rondes sur les solutions locales et nationales\n- Questions-réponses avec des élus\n- Ateliers participatifs sur les actions citoyennes",
+    name: "International Jazz Festival Jakarta 2023",
+    description: "You are responsible for operations, service, or customer support and face challenges trying to communicate complex procedures to a global market effectively.",
     picture: "/images/political-event-1.jpg",
     address: {
       type: "Point",
-      coordinates: [2.3522, 48.8566]
+      coordinates: [106.8456, -6.2088] // Jakarta coordinates
     },
-    startAt: "2025-04-15T18:00:00Z",
-    endAt: "2025-04-15T21:00:00Z",
-    createdAt: "2025-03-01T10:00:00Z"
+    startAt: "2023-04-30T09:00:00Z",
+    endAt: "2023-04-30T21:00:00Z",
+    createdAt: "2023-01-15T10:00:00Z"
   };
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// Mock function to fetch event photos
 async function getEventPhotos(eventId: string): Promise<Photo[]> {
-  // Mock data - in a real app, fetch from API or database
+  // In a real app, fetch from API or database
   return [
     {
       id: '1',
-      url: '/images/event-photo-1.jpg',
-      uploadedAt: '2025-04-15T19:00:00Z'
+      url: '/images/event-photos/event-photo-1.jpg',
+      uploadedAt: '2023-04-30T10:00:00Z'
     },
     {
       id: '2',
-      url: '/images/event-photo-2.jpg',
-      uploadedAt: '2025-04-15T19:15:00Z'
+      url: '/images/event-photos/event-photo-2.jpg',
+      uploadedAt: '2023-04-30T11:15:00Z'
     },
     {
       id: '3',
-      url: '/images/event-photo-3.jpg',
-      uploadedAt: '2025-04-15T19:30:00Z'
+      url: '/images/event-photos/event-photo-3.jpg',
+      uploadedAt: '2023-04-30T12:30:00Z'
     }
   ];
 }
@@ -66,5 +67,9 @@ export default async function EventDetailPage({ params }: { params: { id: string
   const event = await getEvent(eventId);
   const photos = await getEventPhotos(eventId);
   
-  return <EventDetailComponent event={event} photos={photos} />;
+  return (
+    <Suspense fallback={<div>Loading event details...</div>}>
+      <EventDetailComponent event={event} photos={photos} />
+    </Suspense>
+  );
 }

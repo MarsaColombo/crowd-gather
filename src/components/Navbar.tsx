@@ -1,167 +1,126 @@
-// src/components/Navbar.tsx
-"use client";
-
-import React, { useState } from 'react';
-import Link from 'next/link';
+// src/components/layout/PageLayout.tsx
+import React from 'react';
 import { 
-  Navbar as HeroUINavbar, 
+  Navbar, 
   NavbarBrand, 
   NavbarContent, 
   NavbarItem, 
-  NavbarMenuToggle,
-  NavbarMenu,
-  NavbarMenuItem,
   Button,
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem,
-  Avatar
+  Link as HeroUILink,
+  Spinner
 } from "@heroui/react";
+import Link from 'next/link';
 
-interface NavbarProps {
+interface PageLayoutProps {
+  children: React.ReactNode;
   title?: string;
   showBackButton?: boolean;
+  showNavbar?: boolean;
+  loading?: boolean;
+  className?: string;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ 
-  title = "Eventrue", 
-  showBackButton = false 
+const PageLayout: React.FC<PageLayoutProps> = ({
+  children,
+  title = "Eventrue",
+  showBackButton = false,
+  showNavbar = true,
+  loading = false,
+  className = "",
 }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   return (
-    <HeroUINavbar 
-      isMenuOpen={isMenuOpen} 
-      onMenuOpenChange={setIsMenuOpen}
-      isBordered
-      className="fixed top-0 left-0 right-0 z-50"
-    >
-      <NavbarContent>
-        {showBackButton && (
-          <Button
-            isIconOnly
-            variant="light"
-            onClick={() => window.history.back()}
-            aria-label="Retour"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
-            </svg>
-          </Button>
+    <div className="min-h-screen flex flex-col">
+      {/* Fixed header */}
+      {showNavbar && (
+        <Navbar maxWidth="xl" isBordered className="fixed top-0 w-full z-40">
+          <NavbarContent justify="start">
+            {showBackButton && (
+              <Button
+                isIconOnly
+                variant="light"
+                onClick={() => window.history.back()}
+                aria-label="Back"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </Button>
+            )}
+            <NavbarBrand>
+              <Link href="/" className="font-bold text-inherit">
+                {title}
+              </Link>
+            </NavbarBrand>
+          </NavbarContent>
+          
+          <NavbarContent justify="end">
+            <NavbarItem>
+              <Button 
+                as={Link} 
+                color="primary" 
+                href="/profile" 
+                variant="flat"
+                isIconOnly
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </Button>
+            </NavbarItem>
+          </NavbarContent>
+        </Navbar>
+      )}
+      
+      {/* Main content area */}
+      <main className={`flex-grow pt-16 ${className}`}>
+        {loading ? (
+          <div className="flex justify-center items-center h-full">
+            <Spinner 
+              color="primary" 
+              label="Loading..." 
+              size="lg"
+              labelColor="primary"
+            />
+          </div>
+        ) : (
+          children
         )}
-        <NavbarBrand>
-          <Link href="/" className="font-bold text-inherit text-primary-500">
-            {title}
-          </Link>
-        </NavbarBrand>
-      </NavbarContent>
-
-      <NavbarContent className="hidden md:flex gap-4" justify="center">
-        <NavbarItem>
-          <Link 
-            href="/events" 
-            className="text-gray-700 dark:text-gray-200 hover:text-primary-500 dark:hover:text-primary-400"
-          >
-            Événements
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link 
-            href="/about" 
-            className="text-gray-700 dark:text-gray-200 hover:text-primary-500 dark:hover:text-primary-400"
-          >
-            À propos
-          </Link>
-        </NavbarItem>
-      </NavbarContent>
+      </main>
       
-      <NavbarContent justify="end">
-        <NavbarItem className="hidden md:flex">
-          <Button 
-            as={Link} 
-            href="/events/new" 
-            color="primary" 
-            variant="flat"
-          >
-            Créer un événement
-          </Button>
-        </NavbarItem>
-        <NavbarItem>
-          <Dropdown placement="bottom-end">
-            <DropdownTrigger>
-              <Avatar
-                isBordered
-                as="button"
-                className="transition-transform"
-                color="primary"
-                name="US"
-                size="sm"
-                src="/images/user-avatar.png"
-              />
-            </DropdownTrigger>
-            <DropdownMenu aria-label="Profile Actions" variant="flat">
-              <DropdownItem key="profile" className="h-14 gap-2">
-                <p className="font-semibold">Connecté en tant que</p>
-                <p className="font-semibold">utilisateur@exemple.fr</p>
-              </DropdownItem>
-              <DropdownItem key="settings">Mon profil</DropdownItem>
-              <DropdownItem key="events">Mes événements</DropdownItem>
-              <DropdownItem key="help_and_feedback">Aide & feedback</DropdownItem>
-              <DropdownItem key="logout" color="danger">
-                Se déconnecter
-              </DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-        </NavbarItem>
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
-          className="md:hidden"
-        />
-      </NavbarContent>
-      
-      <NavbarMenu>
-        <NavbarMenuItem>
-          <Link 
-            href="/" 
-            className="w-full text-base py-2 hover:text-primary-500"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Accueil
-          </Link>
-        </NavbarMenuItem>
-        <NavbarMenuItem>
-          <Link 
-            href="/events" 
-            className="w-full text-base py-2 hover:text-primary-500"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Événements
-          </Link>
-        </NavbarMenuItem>
-        <NavbarMenuItem>
-          <Link 
-            href="/about" 
-            className="w-full text-base py-2 hover:text-primary-500"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            À propos
-          </Link>
-        </NavbarMenuItem>
-        <NavbarMenuItem>
-          <Button 
-            as={Link} 
-            href="/events/new" 
-            color="primary" 
-            variant="flat"
-            className="mt-4 w-full"
-          >
-            Créer un événement
-          </Button>
-        </NavbarMenuItem>
-      </NavbarMenu>
-    </HeroUINavbar>
+      {/* Footer (stays at the bottom) */}
+      <footer className="mt-auto bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 py-6 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="text-center md:text-left">
+              <h3 className="text-lg font-semibold">Eventrue</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Share photos at public events
+              </p>
+            </div>
+            
+            <div className="flex gap-4">
+              <HeroUILink as={Link} href="/about" color="foreground" underline="hover">
+                About
+              </HeroUILink>
+              <HeroUILink as={Link} href="/privacy" color="foreground" underline="hover">
+                Privacy
+              </HeroUILink>
+              <HeroUILink as={Link} href="/terms" color="foreground" underline="hover">
+                Terms
+              </HeroUILink>
+              <HeroUILink as={Link} href="/contact" color="foreground" underline="hover">
+                Contact
+              </HeroUILink>
+            </div>
+            
+            <div className="text-center md:text-right text-sm text-gray-600 dark:text-gray-400">
+              © {new Date().getFullYear()} Eventrue - All rights reserved
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
   );
 };
 
-export default Navbar;
+export default PageLayout;

@@ -10,37 +10,32 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        political: {
-          red: "#E53935",     // Rouge pour symboliser les partis de gauche
-          blue: "#1565C0",    // Bleu pour symboliser les partis de droite
-          green: "#2E7D32"    // Vert pour les partis écologistes
-        },
         primary: {
           50: "#e3f2fd",
           100: "#bbdefb",
           200: "#90caf9",
           300: "#64b5f6",
           400: "#42a5f5",
-          500: "#1976D2", // Couleur principale - bleu politique standard
-          600: "#1565C0",
-          700: "#0d47a1",
-          800: "#0a3880",
-          900: "#072a60",
-          DEFAULT: "#1976D2",
+          500: "#2196F3", // Primary blue
+          600: "#1e88e5",
+          700: "#1976d2",
+          800: "#1565c0",
+          900: "#0d47a1",
+          DEFAULT: "#2196F3",
           foreground: "#ffffff"
         },
         secondary: {
-          50: "#ffebee",
-          100: "#ffcdd2",
-          200: "#ef9a9a",
-          300: "#e57373",
-          400: "#ef5350",
-          500: "#D32F2F", // Rouge politique
-          600: "#c62828",
-          700: "#b71c1c",
-          800: "#8e1515",
-          900: "#5e0e0e",
-          DEFAULT: "#D32F2F",
+          50: "#fce4ec",
+          100: "#f8bbd0",
+          200: "#f48fb1",
+          300: "#f06292",
+          400: "#ec407a",
+          500: "#e91e63", // Secondary pink
+          600: "#d81b60",
+          700: "#c2185b",
+          800: "#ad1457",
+          900: "#880e4f",
+          DEFAULT: "#e91e63",
           foreground: "#ffffff"
         }
       },
@@ -56,7 +51,7 @@ module.exports = {
   plugins: [
     heroui({
       themes: {
-        "crowd-gather-theme": {
+        "light": {
           extend: "light",
           colors: {
             background: "#f8f9fa",
@@ -67,29 +62,29 @@ module.exports = {
               200: "#90caf9",
               300: "#64b5f6",
               400: "#42a5f5",
-              500: "#1976D2", // Bleu politique
-              600: "#1565C0",
-              700: "#0d47a1",
-              800: "#0a3880",
-              900: "#072a60",
-              DEFAULT: "#1976D2",
+              500: "#2196F3", // Primary blue
+              600: "#1e88e5",
+              700: "#1976d2",
+              800: "#1565c0",
+              900: "#0d47a1",
+              DEFAULT: "#2196F3",
               foreground: "#ffffff"
             },
             secondary: {
-              50: "#ffebee",
-              100: "#ffcdd2",
-              200: "#ef9a9a",
-              300: "#e57373",
-              400: "#ef5350",
-              500: "#D32F2F", // Rouge politique
-              600: "#c62828",
-              700: "#b71c1c",
-              800: "#8e1515",
-              900: "#5e0e0e",
-              DEFAULT: "#D32F2F",
+              50: "#fce4ec",
+              100: "#f8bbd0",
+              200: "#f48fb1",
+              300: "#f06292",
+              400: "#ec407a",
+              500: "#e91e63", // Secondary pink
+              600: "#d81b60",
+              700: "#c2185b",
+              800: "#ad1457",
+              900: "#880e4f",
+              DEFAULT: "#e91e63",
               foreground: "#ffffff"
             },
-            focus: "#1565C0"
+            focus: "#2196F3"
           },
           layout: {
             disabledOpacity: "0.3",

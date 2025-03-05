@@ -6,8 +6,8 @@ import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Eventrue - Public Event Photo Sharing",
-  description: "Capture et partage de photos lors d'événements politiques",
-  keywords: "événements politiques, partage de photos, débats politiques, meetings politiques",
+  description: "Capture and share photos at public events",
+  keywords: "events, photo sharing, political events, public events",
 };
 
 export default function RootLayout({
@@ -16,8 +16,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className="light crowd-gather-theme">
-      <body className={`min-h-screen `}>
+    <html lang="en" className="light">
+      <body className="min-h-screen">
         <Suspense>
           <HeroUIProvider>{children}</HeroUIProvider>
         </Suspense>

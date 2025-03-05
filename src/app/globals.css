@@ -12,7 +12,7 @@ body {
   font-family: var(--font-sans), sans-serif;
 }
 
-/* Political theme-specific styles */
+/* Event-specific styles */
 .event-card {
   @apply bg-primary-50 text-primary-900 rounded-lg shadow-md;
 }
@@ -21,13 +21,13 @@ body {
   @apply bg-primary-600 text-white hover:bg-primary-700 transition-colors;
 }
 
-/* Political gradient */
-.political-gradient {
+/* Gradient backgrounds */
+.event-gradient {
   @apply bg-gradient-to-r from-primary-500 to-secondary-500;
 }
 
-/* Special styles for political quotes */
-.political-quote {
+/* Special event quote styles */
+.event-quote {
   @apply italic border-l-4 border-primary-500 pl-4 py-2 my-4 text-gray-700;
 }
 
@@ -47,4 +47,36 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary-400);
+}
+
+/* Mobile optimization */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Utility classes */
+.full-bleed {
+  width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+.text-balance {
+  text-wrap: balance;
 }
