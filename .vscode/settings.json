@@ -1,0 +1,20 @@
+{
+  "typescript.validate.enable": false,
+  "javascript.validate.enable": false,
+  "eslint.enable": false,
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "never"
+  },
+  "editor.quickSuggestions": {
+    "other": false,
+    "comments": false,
+    "strings": false
+  },
+  "editor.suggestOnTriggerCharacters": false,
+  "editor.wordBasedSuggestions": "off",
+  "editor.parameterHints.enabled": false,
+  "editor.diagnostics.enabled": false,
+  "cSpell.enabled": false,
+  "cSpell.words": ["heroui", "tailwindcss", "nextjs", "vercel", "prisma", "cloudinary"]
+}
