@@ -64,15 +64,15 @@ async function getEventPhotos(eventId: string): Promise<Photo[]> {
   ]);
 }
 
-type PageProps = {
-  params: { id: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
+type Props = {
+  params: Promise<{ id: string }>;
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-export default async function EventDetailPage({ params }: PageProps) {
-  const eventId = params.id;
-  const event = await getEvent(eventId);
-  const photos = await getEventPhotos(eventId);
+export default async function EventDetailPage(props: Props) {
+  const { id } = await props.params;
+  const event = await getEvent(id);
+  const photos = await getEventPhotos(id);
 
   return (
     <Suspense fallback={<div>Loading event details...</div>}>
