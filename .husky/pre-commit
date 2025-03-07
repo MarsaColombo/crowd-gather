@@ -1,28 +1,4 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
 
-
-echo '🏗️ Checking your project before committing...'
-
-# Check Prettier standards
-npm run format:check ||
-(
-    echo '🤢 Prettier Check Failed. Run npm run format, add changes and try commit again.';
-    false;
-)
-
-# Check ESLint Standards
-npm run lint ||
-(
-    echo '😤 ESLint Check Failed. Make the required changes listed above, add changes and try to commit again.'
-    false;
-)
-
-# Check tsconfig standards
-npm run type:check ||
-(
-    echo '❌ Type check Failed. Make the required changes listed above, add changes and try to commit again.'
-    false;
-)
-
-# If everything passes... Now we can commit
-echo '✅ Committing this now...'
-
+npm run check:all
