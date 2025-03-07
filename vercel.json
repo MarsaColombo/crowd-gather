@@ -1,1 +1,8 @@
-{ "build": { "env": { "PRISMA_GENERATE": "true" } } }
+{
+  "build": {
+    "env": {
+      "PRISMA_GENERATE": "true"
+    }
+  },
+  "ignoreCommand": "npx --no -- tsc --noEmit"
+}
