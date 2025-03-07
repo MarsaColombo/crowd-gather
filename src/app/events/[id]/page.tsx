@@ -25,7 +25,7 @@ interface Photo {
 // Mock function to fetch a single event
 async function getEvent(id: string): Promise<Event> {
   // In a real app, fetch from API or database
-  return {
+  return Promise.resolve({
     id,
     name: 'International Jazz Festival Jakarta 2023',
     description:
@@ -38,14 +38,14 @@ async function getEvent(id: string): Promise<Event> {
     startAt: '2023-04-30T09:00:00Z',
     endAt: '2023-04-30T21:00:00Z',
     createdAt: '2023-01-15T10:00:00Z',
-  };
+  });
 }
 
 // Mock function to fetch event photos
 async function getEventPhotos(eventId: string): Promise<Photo[]> {
   console.log('🚀 ~ getEventPhotos ~ eventId:', eventId);
   // In a real app, fetch from API or database
-  return [
+  return Promise.resolve([
     {
       id: '1',
       url: '/images/event-photos/event-photo-1.jpg',
@@ -61,7 +61,7 @@ async function getEventPhotos(eventId: string): Promise<Photo[]> {
       url: '/images/event-photos/event-photo-3.jpg',
       uploadedAt: '2023-04-30T12:30:00Z',
     },
-  ];
+  ]);
 }
 
 interface PageProps {
