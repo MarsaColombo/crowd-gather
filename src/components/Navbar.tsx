@@ -1,11 +1,11 @@
 // src/components/Navbar.tsx
-"use client";
+'use client';
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { 
-  Input, 
-  Button, 
+import {
+  Input,
+  Button,
   Dropdown,
   DropdownTrigger,
   DropdownMenu,
@@ -18,18 +18,15 @@ import {
   ModalBody,
   ModalFooter,
   Chip,
-  useDisclosure
-} from "@heroui/react";
+  useDisclosure,
+} from '@heroui/react';
 
 interface NavbarProps {
   showSearch?: boolean;
   title?: string;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ 
-  showSearch = true,
-  title = "Eventrue"
-}) => {
+const Navbar: React.FC<NavbarProps> = ({ showSearch = true, title = 'Eventrue' }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -37,7 +34,9 @@ const Navbar: React.FC<NavbarProps> = ({
     <div className="bg-white">
       {/* Header */}
       <div className="px-4 pt-4 flex justify-between items-center">
-        <Link className="text-2xl font-bold text-primary-500" href={"/"}>{title}</Link>
+        <Link className="text-2xl font-bold text-primary-500" href={'/'}>
+          {title}
+        </Link>
         <Dropdown placement="bottom-end">
           <DropdownTrigger>
             <Avatar
@@ -79,19 +78,36 @@ const Navbar: React.FC<NavbarProps> = ({
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             startContent={
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 text-gray-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
               </svg>
             }
             endContent={
-              <Button 
-                isIconOnly 
-                variant="light" 
-                color="primary" 
-                onPress={onOpen}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+              <Button isIconOnly variant="light" color="primary" onPress={onOpen}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+                  />
                 </svg>
               </Button>
             }
@@ -110,12 +126,7 @@ const Navbar: React.FC<NavbarProps> = ({
                 <h3 className="text-md font-semibold mb-2">Catégories</h3>
                 <div className="flex flex-wrap gap-2">
                   {['Démocratie', 'Environnement', 'Économie', 'Social', 'Jeunesse'].map((cat) => (
-                    <Chip 
-                      key={cat} 
-                      variant="bordered" 
-                      color="primary"
-                      className="cursor-pointer"
-                    >
+                    <Chip key={cat} variant="bordered" color="primary" className="cursor-pointer">
                       {cat}
                     </Chip>
                   ))}
@@ -124,20 +135,12 @@ const Navbar: React.FC<NavbarProps> = ({
               <Divider />
               <div>
                 <h3 className="text-md font-semibold mb-2">Date</h3>
-                <Input 
-                  type="date" 
-                  label="Date de l'événement" 
-                  className="max-w-xs" 
-                />
+                <Input type="date" label="Date de l'événement" className="max-w-xs" />
               </div>
               <Divider />
               <div>
                 <h3 className="text-md font-semibold mb-2">Localisation</h3>
-                <Input 
-                  type="text" 
-                  label="Ville ou Région" 
-                  className="w-full" 
-                />
+                <Input type="text" label="Ville ou Région" className="w-full" />
               </div>
             </div>
           </ModalBody>

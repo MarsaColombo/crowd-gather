@@ -4,10 +4,10 @@ import Image from 'next/image';
 
 interface AuthBackgroundProps {
   children: React.ReactNode;
-  images?: Array<{id: string, image: string}>;
+  images?: Array<{ id: string; image: string }>;
 }
 
-const AuthBackground: React.FC<AuthBackgroundProps> = ({ 
+const AuthBackground: React.FC<AuthBackgroundProps> = ({
   children,
   images = [
     { id: '1', image: '/images/event-photos/event-photo-1.jpg' },
@@ -15,8 +15,8 @@ const AuthBackground: React.FC<AuthBackgroundProps> = ({
     { id: '3', image: '/images/event-photos/event-photo-3.jpg' },
     { id: '4', image: '/images/event-photos/event-photo-4.jpg' },
     { id: '5', image: '/images/political-event-1.jpg' },
-    { id: '6', image: '/images/political-event-2.jpg' }
-  ] 
+    { id: '6', image: '/images/political-event-2.jpg' },
+  ],
 }) => {
   return (
     <div className="min-h-screen bg-gray-900 flex flex-col">
@@ -28,19 +28,19 @@ const AuthBackground: React.FC<AuthBackgroundProps> = ({
       <div className="fixed inset-0 events-grid opacity-10 z-0">
         {images.map((event) => (
           <div key={event.id} className="relative overflow-hidden rounded-lg">
-            <Image 
-              src={event.image} 
-              alt="" 
-              fill 
+            <Image
+              src={event.image}
+              alt=""
+              fill
               className="object-cover"
               sizes="(max-width: 768px) 100px, 150px"
             />
           </div>
         ))}
       </div>
-      
+
       {children}
-      
+
       {/* Footer */}
       <footer className="py-4 text-center text-gray-400 text-sm">
         <p>© {new Date().getFullYear()} Eventrue. All rights reserved.</p>

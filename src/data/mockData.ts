@@ -31,7 +31,8 @@ export const featuredEvents: Event[] = [
     image: '/images/political-event-1.jpg',
     live: false,
     category: 'Démocratie',
-    description: 'Un débat national sur les grands enjeux de la démocratie participative en France.'
+    description:
+      'Un débat national sur les grands enjeux de la démocratie participative en France.',
   },
   {
     id: '2',
@@ -42,8 +43,9 @@ export const featuredEvents: Event[] = [
     image: '/images/political-event-2.jpg',
     live: true,
     category: 'Participation',
-    description: 'Un forum permettant aux citoyens de s\'exprimer et d\'échanger sur des thématiques locales.'
-  }
+    description:
+      "Un forum permettant aux citoyens de s'exprimer et d'échanger sur des thématiques locales.",
+  },
 ];
 
 // Événements spéciaux
@@ -56,7 +58,7 @@ export const specialEvents: Event[] = [
     location: 'Bordeaux, France',
     free: true,
     image: '/images/political-event-3.jpg',
-    description: 'Une conférence sur les enjeux climatiques et les solutions à mettre en place.'
+    description: 'Une conférence sur les enjeux climatiques et les solutions à mettre en place.',
   },
   {
     id: '4',
@@ -66,7 +68,7 @@ export const specialEvents: Event[] = [
     location: 'Marseille, France',
     invitation: true,
     image: '/images/political-event-4.jpg',
-    description: 'Un sommet réunissant des experts pour discuter des perspectives économiques.'
+    description: 'Un sommet réunissant des experts pour discuter des perspectives économiques.',
   },
   {
     id: '5',
@@ -76,8 +78,8 @@ export const specialEvents: Event[] = [
     location: 'Toulouse, France',
     free: true,
     image: '/images/political-event-5.jpg',
-    description: 'Un forum dédié aux jeunes et à leur place dans la société.'
-  }
+    description: 'Un forum dédié aux jeunes et à leur place dans la société.',
+  },
 ];
 
 // Événements à venir
@@ -89,7 +91,7 @@ export const upcomingEvents: Event[] = [
     location: 'Nantes, France',
     image: '/images/political-event-6.jpg',
     category: 'Environnement',
-    description: 'Une conférence sur les enjeux de la transition écologique dans notre société.'
+    description: 'Une conférence sur les enjeux de la transition écologique dans notre société.',
   },
   {
     id: '7',
@@ -98,8 +100,8 @@ export const upcomingEvents: Event[] = [
     location: 'Strasbourg, France',
     image: '/images/political-event-7.jpg',
     category: 'Jeunesse',
-    description: 'Un forum national pour permettre aux jeunes de s\'exprimer sur leur avenir.'
-  }
+    description: "Un forum national pour permettre aux jeunes de s'exprimer sur leur avenir.",
+  },
 ];
 
 // Catégories
@@ -109,7 +111,7 @@ export const categories: Category[] = [
   { name: 'Social', icon: '👥', color: 'secondary' },
   { name: 'Économie', icon: '💼', color: 'warning' },
   { name: 'Droits', icon: '✊', color: 'danger' },
-  { name: 'Régional', icon: '🏛️', color: 'default' }
+  { name: 'Régional', icon: '🏛️', color: 'default' },
 ];
 
 // Fonction simulant un appel API pour récupérer les événements
@@ -148,7 +150,7 @@ export const getEventById = (id: string): Promise<Event | undefined> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       const allEvents = [...featuredEvents, ...specialEvents, ...upcomingEvents];
-      const event = allEvents.find(event => event.id === id);
+      const event = allEvents.find((event) => event.id === id);
       resolve(event);
     }, 200);
   });

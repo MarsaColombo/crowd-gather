@@ -1,5 +1,5 @@
 // src/app/page.tsx
-"use client"
+'use client';
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import BottomNavigation from '@/components/layout/BottomNavigation';
@@ -9,7 +9,7 @@ import UpcomingEventCard from '@/components/events/UpcomingEventCard';
 import CategoryGrid from '@/components/categories/CategoryGrid';
 import EventsSection from '@/components/events/EventsSection';
 import { fetchEvents, fetchCategories, Event, Category } from '@/data/mockData';
-import { Spinner } from "@heroui/react";
+import { Spinner } from '@heroui/react';
 
 export default function Home() {
   // États pour stocker les données
@@ -17,7 +17,7 @@ export default function Home() {
   const [specialEvents, setSpecialEvents] = useState<Event[]>([]);
   const [upcomingEvents, setUpcomingEvents] = useState<Event[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
-  
+
   // États pour les chargements
   const [loadingFeatured, setLoadingFeatured] = useState(true);
   const [loadingSpecial, setLoadingSpecial] = useState(true);
@@ -33,26 +33,26 @@ export default function Home() {
         const featured = await fetchEvents('featured');
         setFeaturedEvents(featured);
         setLoadingFeatured(false);
-        
+
         // Charger les événements spéciaux
         setLoadingSpecial(true);
         const special = await fetchEvents('special');
         setSpecialEvents(special);
         setLoadingSpecial(false);
-        
+
         // Charger les événements à venir
         setLoadingUpcoming(true);
         const upcoming = await fetchEvents('upcoming');
         setUpcomingEvents(upcoming);
         setLoadingUpcoming(false);
-        
+
         // Charger les catégories
         setLoadingCategories(true);
         const cats = await fetchCategories();
         setCategories(cats);
         setLoadingCategories(false);
       } catch (error) {
-        console.error("Erreur lors du chargement des données:", error);
+        console.error('Erreur lors du chargement des données:', error);
         // Gérer les erreurs si nécessaire
         setLoadingFeatured(false);
         setLoadingSpecial(false);
@@ -60,7 +60,7 @@ export default function Home() {
         setLoadingCategories(false);
       }
     };
-    
+
     loadData();
   }, []);
 
@@ -122,17 +122,13 @@ export default function Home() {
 
       {/* Categories Section */}
       <EventsSection title="Catégories" viewAllLink="/categories">
-        {loadingCategories ? (
-          <LoadingIndicator />
-        ) : (
-          <CategoryGrid categories={categories} />
-        )}
+        {loadingCategories ? <LoadingIndicator /> : <CategoryGrid categories={categories} />}
       </EventsSection>
 
       {/* Upcoming Events Section */}
-      <EventsSection 
-        title="Événements à venir" 
-        viewAllLink="/events/upcoming" 
+      <EventsSection
+        title="Événements à venir"
+        viewAllLink="/events/upcoming"
         viewAllText="Tout voir"
       >
         {loadingUpcoming ? (

@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "standalone",
+  output: 'standalone',
   reactStrictMode: true,
 
   env: {
@@ -11,7 +11,7 @@ const nextConfig = {
   poweredByHeader: false,
 
   images: {
-    domains: ["res.cloudinary.com", "cloudinary.com"],
+    domains: ['res.cloudinary.com', 'cloudinary.com'],
   },
 };
 

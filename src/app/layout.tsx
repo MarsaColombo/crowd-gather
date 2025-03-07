@@ -1,13 +1,13 @@
 // src/app/layout.tsx
-import "./globals.css";
-import type { Metadata } from "next";
-import { HeroUIProvider } from "@heroui/react";
-import { Suspense } from "react";
+import './globals.css';
+import type { Metadata } from 'next';
+import { HeroUIProvider } from '@heroui/react';
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
-  title: "Eventrue - Public Event Photo Sharing",
-  description: "Capture and share photos at public events",
-  keywords: "events, photo sharing, political events, public events",
+  title: 'Eventrue - Public Event Photo Sharing',
+  description: 'Capture and share photos at public events',
+  keywords: 'events, photo sharing, political events, public events',
 };
 
 export default function RootLayout({

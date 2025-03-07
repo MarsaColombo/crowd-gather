@@ -7,11 +7,7 @@ interface AuthHeaderProps {
   className?: string;
 }
 
-const AuthHeader: React.FC<AuthHeaderProps> = ({ 
-  title, 
-  id = "auth-text",
-  className = ""
-}) => {
+const AuthHeader: React.FC<AuthHeaderProps> = ({ title, id = 'auth-text', className = '' }) => {
   return (
     <div id={id} className={`text-center mb-8 opacity-0 ${className}`}>
       <h1 className="text-3xl font-bold text-white mb-2">{title}</h1>

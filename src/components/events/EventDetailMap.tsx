@@ -1,5 +1,5 @@
 // src/components/events/EventDetailMap.tsx
-"use client";
+'use client';
 
 import React, { useEffect, useRef } from 'react';
 import L from 'leaflet';
@@ -21,7 +21,8 @@ const EventDetailMap: React.FC<EventDetailMapProps> = ({ coordinates, eventName 
 
       // Add OpenStreetMap tile layer
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(map);
 
       // Create custom marker icon
@@ -31,12 +32,12 @@ const EventDetailMap: React.FC<EventDetailMapProps> = ({ coordinates, eventName 
         iconAnchor: [12, 41],
         popupAnchor: [1, -34],
         shadowUrl: '/images/marker-shadow.png',
-        shadowSize: [41, 41]
+        shadowSize: [41, 41],
       });
 
       // Add marker at event location
       const marker = L.marker([latitude, longitude], { icon: defaultIcon }).addTo(map);
-      
+
       // Add popup with event name
       marker.bindPopup(`<b>${eventName}</b>`).openPopup();
 

@@ -1,5 +1,5 @@
 // src/app/events/[id]/order/page.tsx
-"use client";
+'use client';
 
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
@@ -25,7 +25,7 @@ interface Package {
 export default function EventOrderPage() {
   const params = useParams();
   const eventId = params.id as string;
-  
+
   const [isLoading, setIsLoading] = useState(true);
   const [event, setEvent] = useState<Event | null>(null);
   const [selectedPackage, setSelectedPackage] = useState<Package | null>(null);
@@ -36,23 +36,23 @@ export default function EventOrderPage() {
       setIsLoading(true);
       try {
         // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
         // Mock data
         setEvent({
           id: eventId,
-          name: "International Jazz Festival Jakarta 2023",
-          picture: "/images/event-photos/event-photo-1.jpg",
-          startAt: "2023-04-30T09:00:00Z",
-          endAt: "2023-04-30T21:00:00Z",
-          location: "TIM Park, Jakarta, Indonesia"
+          name: 'International Jazz Festival Jakarta 2023',
+          picture: '/images/event-photos/event-photo-1.jpg',
+          startAt: '2023-04-30T09:00:00Z',
+          endAt: '2023-04-30T21:00:00Z',
+          location: 'TIM Park, Jakarta, Indonesia',
         });
-        
+
         setSelectedPackage({
-          name: "Gold Package",
-          description: "VIPP Seat, 2 Day Full",
+          name: 'Gold Package',
+          description: 'VIPP Seat, 2 Day Full',
           price: 235,
-          originalPrice: 355
+          originalPrice: 355,
         });
       } catch (error) {
         console.error('Error fetching event:', error);

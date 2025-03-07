@@ -1,9 +1,9 @@
 // src/components/categories/CategoryGrid.tsx
-"use client";
+'use client';
 
 import React from 'react';
 import Link from 'next/link';
-import { Button } from "@heroui/react";
+import { Button } from '@heroui/react';
 
 interface Category {
   name: string;
@@ -19,7 +19,7 @@ const CategoryGrid: React.FC<CategoryGridProps> = ({ categories }) => {
   return (
     <div className="grid grid-cols-3 gap-3">
       {categories.map((category) => (
-        <Button 
+        <Button
           key={category.name}
           variant="flat"
           color={category.color as any}

@@ -16,13 +16,16 @@ Eventrue is a mobile-first web application designed to enhance public event expe
 ## 🔧 Environment Setup
 
 ### 1. Clone the Repository
+
 ```bash
 git clone https://github.com/yourusername/eventrue.git
 cd eventrue
 ```
 
 ### 2. Configure Environment Variables
+
 Create a `.env` file in the project root with the following variables:
+
 ```
 # Cloudinary Credentials
 CLOUDINARY_CLOUD_NAME=your_cloud_name
@@ -37,6 +40,7 @@ DATABASE_URL_PROD=postgresql://prod_user:prod_password@localhost:5432/eventrue_p
 ### 3. Development Environment
 
 #### Quick Start
+
 ```bash
 # Check environment variables
 make check-env
@@ -46,6 +50,7 @@ make setup-dev
 ```
 
 #### Individual Development Commands
+
 ```bash
 # Start development services
 make dev-up
@@ -69,6 +74,7 @@ make seed-dev
 ### 4. Production Environment
 
 #### Quick Start
+
 ```bash
 # Check environment variables
 make check-env
@@ -78,6 +84,7 @@ make setup-prod
 ```
 
 #### Individual Production Commands
+
 ```bash
 # Start production services
 make prod-up

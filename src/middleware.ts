@@ -1,6 +1,6 @@
 // src/middleware.ts
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
   //   const path = request.nextUrl.pathname;
@@ -19,5 +19,5 @@ export function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ["/", "/events/:path*", "/auth/login", "/auth/signup", "/profile"],
+  matcher: ['/', '/events/:path*', '/auth/login', '/auth/signup', '/profile'],
 };

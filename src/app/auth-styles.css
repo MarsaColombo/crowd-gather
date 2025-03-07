@@ -83,7 +83,8 @@
   opacity: 0.2;
 }
 
-body, html {
+body,
+html {
   background-color: #111827; /* Couleur gris foncé (gray-900) */
   margin: 0;
   padding: 0;
