@@ -105,7 +105,7 @@ export default function EventsPage() {
     <div className="min-h-screen bg-white">
       {/* Header */}
       <div className="px-4 pt-4 flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-primary-500">Eventrue</h1>
+        <h1 className="text-2xl font-bold text-primary-500">Crowd Gather</h1>
         <Avatar
           isBordered
           as="button"

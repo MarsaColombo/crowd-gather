@@ -15,7 +15,7 @@ interface PageLayoutProps {
 
 const PageLayout: React.FC<PageLayoutProps> = ({
   children,
-  title = 'Eventrue',
+  title = 'Crowd Gather',
   showNavbar = true,
   loading = false,
   className = '',
@@ -46,7 +46,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <h3 className="text-lg font-semibold mb-4">Eventrue</h3>
+              <h3 className="text-lg font-semibold mb-4">Crowd Gather</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 Plateforme de partage de photos lors d&apos;événements politiques.
               </p>
@@ -134,7 +134,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({
           <Divider className="my-6" />
 
           <div className="text-center text-sm text-gray-600 dark:text-gray-400">
-            <p>© {new Date().getFullYear()} Eventrue - Tous droits réservés</p>
+            <p>© {new Date().getFullYear()} Crowd Gather - Tous droits réservés</p>
           </div>
         </div>
       </footer>

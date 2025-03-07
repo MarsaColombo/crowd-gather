@@ -70,7 +70,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({
       <div className="flex-grow flex flex-col items-center justify-start px-6 pt-6 bg-white relative z-10">
         <div className="text-center max-w-md mx-auto">
           <h1 className="text-4xl font-bold text-gray-800">{title}</h1>
-          <h2 className="text-5xl font-bold text-blue-500 mb-4">eventrue</h2>
+          <h2 className="text-5xl font-bold text-blue-500 mb-4">crowd gather</h2>
           <p className="text-gray-600 mb-8">{subtitle}</p>
 
           {/* Main Content (Form or Action) */}

@@ -21,7 +21,7 @@ const EventQRCode: React.FC<EventQRCodeProps> = ({ eventId, eventName }) => {
       setIsLoading(true);
       try {
         // Create a URL that includes the event ID
-        const eventUrl = `https://eventrue.com/events/${eventId}`;
+        const eventUrl = `https://crowdgather.com/events/${eventId}`;
 
         // Use the QR Server API to generate a QR code
         const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(eventUrl)}`;
@@ -43,14 +43,14 @@ const EventQRCode: React.FC<EventQRCodeProps> = ({ eventId, eventName }) => {
         await navigator.share({
           title: eventName,
           text: `Join me at ${eventName}!`,
-          url: `https://eventrue.com/events/${eventId}`,
+          url: `https://crowdgather.com/events/${eventId}`,
         });
       } catch (error) {
         console.error('Error sharing:', error);
       }
     } else {
       // Fallback for browsers that don't support the Web Share API
-      alert(`Share this URL: https://eventrue.com/events/${eventId}`);
+      alert(`Share this URL: https://crowdgather.com/events/${eventId}`);
     }
   };
 

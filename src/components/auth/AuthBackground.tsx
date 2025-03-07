@@ -43,7 +43,7 @@ const AuthBackground: React.FC<AuthBackgroundProps> = ({
 
       {/* Footer */}
       <footer className="py-4 text-center text-gray-400 text-sm">
-        <p>© {new Date().getFullYear()} Eventrue. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Crowd Gather. All rights reserved.</p>
       </footer>
     </div>
   );

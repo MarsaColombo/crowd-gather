@@ -1,8 +1,8 @@
-# Eventrue - Public Event Photo Sharing Platform
+# Crowd Gather - Public Event Photo Sharing Platform
 
 ## 🚀 Project Overview
 
-Eventrue is a mobile-first web application designed to enhance public event experiences by allowing users to browse events, take photos, and share memories.
+Crowd Gather is a mobile-first web application designed to enhance public event experiences by allowing users to browse events, take photos, and share memories.
 
 ## 📋 Prerequisites
 
@@ -18,8 +18,8 @@ Eventrue is a mobile-first web application designed to enhance public event expe
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/eventrue.git
-cd eventrue
+git clone https://github.com/yourusername/crowdgather.git
+cd crowdgather
 ```
 
 ### 2. Configure Environment Variables
@@ -33,8 +33,8 @@ CLOUDINARY_API_KEY=your_api_key
 CLOUDINARY_API_SECRET=your_api_secret
 
 # Database URLs
-DATABASE_URL_DEV=postgresql://dev_user:dev_password@localhost:5432/eventrue_dev
-DATABASE_URL_PROD=postgresql://prod_user:prod_password@localhost:5432/eventrue_prod
+DATABASE_URL_DEV=postgresql://dev_user:dev_password@localhost:5432/crowdgather_dev
+DATABASE_URL_PROD=postgresql://prod_user:prod_password@localhost:5432/crowdgather_prod
 ```
 
 ### 3. Development Environment
@@ -108,13 +108,13 @@ make seed-prod
 ## 🛠️ Project Structure
 
 ```
-eventrue/
+crowdgather/
 ├── prisma/             # Database schema and migrations
 ├── src/
 │   ├── app/            # Next.js app router
 │   │   ├── api/        # API route handlers
 │   │   └── events/     # Event-related pages
-│   ├── components/     # Reusable React components
+│   │   └── components/ # Reusable React components
 │   └── styles/         # CSS and styling
 ├── Dockerfile.dev      # Development Dockerfile
 ├── Dockerfile.prod     # Production Dockerfile
@@ -151,4 +151,4 @@ eventrue/
 
 ## 📞 Support
 
-For issues and questions, please open a GitHub issue or contact support@eventrue.com
+For issues and questions, please open a GitHub issue or contact support@crowdgather.com

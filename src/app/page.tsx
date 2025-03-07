@@ -74,7 +74,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       {/* Navbar */}
-      <Navbar title="Eventrue" />
+      <Navbar title="Crowd Gather" />
 
       {/* Featured Events Section */}
       <EventsSection title="Événements pour vous" viewAllLink="/events">

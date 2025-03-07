@@ -16,23 +16,23 @@ async function main() {
   // Create diverse users with different roles
   const users = await Promise.all([
     prisma.user.upsert({
-      where: { email: 'admin@eventrue.com' },
+      where: { email: 'admin@crowdgather.com' },
       update: {},
       create: {
-        email: 'admin@eventrue.com',
+        email: 'admin@crowdgather.com',
         name: 'Marie Laurent',
         username: 'marie_admin',
         password: await hash('password123', 10),
         avatar: '/images/avatars/admin-avatar.png',
         role: UserRole.ADMIN,
-        bio: 'Administratrice de la plateforme Eventrue, passionnée de démocratie participative',
+        bio: 'Administratrice de la plateforme Crowd Gather, passionnée de démocratie participative',
       },
     }),
     prisma.user.upsert({
-      where: { email: 'organizer@eventrue.com' },
+      where: { email: 'organizer@crowdgather.com' },
       update: {},
       create: {
-        email: 'organizer@eventrue.com',
+        email: 'organizer@crowdgather.com',
         name: 'Léa Dubois',
         username: 'lea_events',
         password: await hash('password123', 10),
@@ -42,10 +42,10 @@ async function main() {
       },
     }),
     prisma.user.upsert({
-      where: { email: 'journalist@eventrue.com' },
+      where: { email: 'journalist@crowdgather.com' },
       update: {},
       create: {
-        email: 'journalist@eventrue.com',
+        email: 'journalist@crowdgather.com',
         name: 'Marc Lefèvre',
         username: 'marc_journaliste',
         password: await hash('password123', 10),
@@ -55,10 +55,10 @@ async function main() {
       },
     }),
     prisma.user.upsert({
-      where: { email: 'citizen@eventrue.com' },
+      where: { email: 'citizen@crowdgather.com' },
       update: {},
       create: {
-        email: 'citizen@eventrue.com',
+        email: 'citizen@crowdgather.com',
         name: 'Sophie Martin',
         username: 'sophie_citoyenne',
         password: await hash('password123', 10),
@@ -68,10 +68,10 @@ async function main() {
       },
     }),
     prisma.user.upsert({
-      where: { email: 'activist@eventrue.com' },
+      where: { email: 'activist@crowdgather.com' },
       update: {},
       create: {
-        email: 'activist@eventrue.com',
+        email: 'activist@crowdgather.com',
         name: 'David Rousseau',
         username: 'david_militant',
         password: await hash('password123', 10),

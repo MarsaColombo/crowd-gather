@@ -25,7 +25,7 @@ services:
       - /app/node_modules
       - /app/.next
     environment:
-      - DATABASE_URL=postgresql://dev_user:dev_password@dev-db:5432/eventrue_dev
+      - DATABASE_URL=postgresql://dev_user:dev_password@dev-db:5432/crowdgather_dev
       - NEXT_PUBLIC_API_URL=http://localhost:3000/api
       - CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME}
       - CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}

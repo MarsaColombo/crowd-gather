@@ -5,7 +5,7 @@ import { HeroUIProvider } from '@heroui/react';
 import { Suspense } from 'react';
 
 export const metadata: Metadata = {
-  title: 'Eventrue - Public Event Photo Sharing',
+  title: 'Crowd Gather - Public Event Photo Sharing',
   description: 'Capture and share photos at public events',
   keywords: 'events, photo sharing, political events, public events',
 };

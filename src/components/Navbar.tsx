@@ -26,7 +26,7 @@ interface NavbarProps {
   title?: string;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ showSearch = true, title = 'Eventrue' }) => {
+const Navbar: React.FC<NavbarProps> = ({ showSearch = true, title = 'Crowd Gather' }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -51,7 +51,7 @@ const Navbar: React.FC<NavbarProps> = ({ showSearch = true, title = 'Eventrue' }
           <DropdownMenu aria-label="Profile Actions" variant="flat">
             <DropdownItem key="profile" className="h-14 gap-2">
               <p className="font-semibold">Connecté en tant que</p>
-              <p className="font-semibold text-primary-500">utilisateur@eventrue.com</p>
+              <p className="font-semibold text-primary-500">utilisateur@crowdgather.com</p>
             </DropdownItem>
             <DropdownItem key="settings" as={Link} href="/profile">
               Mon Profil

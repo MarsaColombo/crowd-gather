@@ -1,7 +1,7 @@
-# Makefile for Eventrue Application
+# Makefile for Crowd Gather Application
 
 # Project Variables
-PROJECT_NAME = eventrue
+PROJECT_NAME = crowdgather
 DOCKER_COMPOSE = docker-compose
 DOCKER = docker
 
@@ -115,7 +115,7 @@ test-db:
 # Help
 .PHONY: help
 help:
-	@echo "Eventrue Docker Management"
+	@echo "Crowd Gather Docker Management"
 	@echo ""
 	@echo "Development Commands:"
 	@echo "  make dev-up       - Start development environment"
