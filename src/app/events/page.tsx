@@ -2,12 +2,9 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { 
   Input, 
   Button, 
-  Card, 
-  CardBody, 
   Chip,
   Avatar,
   Divider,
@@ -19,9 +16,14 @@ import {
   ModalFooter,
   useDisclosure
 } from "@heroui/react";
-import EventCard from '@/components/events/EventCard';
+import Navbar from '@/components/Navbar';
+import BottomNavigation from '@/components/layout/BottomNavigation';
+import FeaturedEventCard from '@/components/events/FeaturedEventCard';
+import SpecialEventCard from '@/components/events/SpecialEventCard';
+import CategoryGrid from '@/components/categories/CategoryGrid';
+import EventsSection from '@/components/events/EventsSection';
 
-export default function Home() {
+export default function EventsPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -30,22 +32,22 @@ export default function Home() {
     {
       id: '1',
       name: 'International Jazz Festival Jakarta 2023',
-      startAt: new Date('2023-04-30T09:00:00Z'),
-      endAt: new Date('2023-04-30T21:00:00Z'),
+      date: '30 April 2023',
       location: 'TIM Park, Jakarta, Indonesia',
-      price: 235,
+      free: false,
+      image: '/images/event-photos/event-photo-1.jpg',
       category: 'Music',
-      picture: '/images/event-photos/event-photo-1.jpg',
+      price: 235
     },
     {
       id: '2',
       name: 'Food Festival Years Indo',
-      startAt: new Date('2023-01-21T09:00:00Z'),
-      endAt: new Date('2023-01-21T20:00:00Z'),
+      date: '21 January 2023',
       location: 'Jakarta, Indonesia',
-      price: 23,
+      free: false,
+      image: '/images/event-photos/event-photo-2.jpg',
       category: 'Food',
-      picture: '/images/event-photos/event-photo-2.jpg',
+      price: 23
     }
   ];
 
@@ -54,31 +56,43 @@ export default function Home() {
     {
       id: '3',
       name: 'Concert Westlife',
-      startAt: new Date('2023-02-21T18:30:00Z'),
-      endAt: new Date('2023-02-21T22:00:00Z'),
+      date: '21 February 2023',
       location: 'Jakarta, Indonesia',
       category: 'Music',
-      picture: '/images/event-photos/event-photo-3.jpg',
+      image: '/images/event-photos/event-photo-3.jpg'
     },
     {
       id: '4',
       name: 'Padang Food Festival',
-      startAt: new Date('2023-01-21T10:00:00Z'),
-      endAt: new Date('2023-01-21T21:00:00Z'),
+      date: '21 January 2023',
       location: 'Jakarta, Indonesia',
       category: 'Food',
-      picture: '/images/event-photos/event-photo-4.jpg',
+      image: '/images/event-photos/event-photo-4.jpg'
     },
     {
       id: '5',
       name: 'Clouds Music Indofest',
-      startAt: new Date('2023-01-21T14:00:00Z'),
-      endAt: new Date('2023-01-21T23:59:00Z'),
+      date: '21 January 2023',
       location: 'Jakarta, Indonesia',
       category: 'Music',
-      picture: '/images/event-photos/event-photo-5.jpg',
+      image: '/images/event-photos/event-photo-5.jpg'
     }
   ];
+
+  // Categories
+  const categories = [
+    { name: 'Music', icon: '🎵', color: 'primary' },
+    { name: 'Food', icon: '🍔', color: 'success' },
+    { name: 'Sports', icon: '⚽', color: 'warning' },
+    { name: 'Arts', icon: '🎨', color: 'secondary' },
+    { name: 'Tech', icon: '💻', color: 'danger' },
+    { name: 'Outdoor', icon: '🏕️', color: 'default' }
+  ];
+
+  // Handler pour le changement de recherche
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -101,7 +115,7 @@ export default function Home() {
           type="search"
           placeholder="Search events..."
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={handleSearchChange}
           startContent={
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -176,115 +190,43 @@ export default function Home() {
       </Modal>
 
       {/* Featured Events Section */}
-      <div className="px-4 mt-6">
-        <div className="flex justify-between items-center mb-2">
-          <h2 className="text-lg font-bold">Featured Events</h2>
-          <Link href="/events" className="text-sm text-primary-500">View All</Link>
-        </div>
-
+      <EventsSection title="Featured Events" viewAllLink="/events">
         <div className="flex space-x-4 overflow-x-auto pb-4">
           {featuredEvents.map((event) => (
             <div key={event.id} className="min-w-64 flex-shrink-0">
-              <EventCard
+              <FeaturedEventCard
                 id={event.id}
                 name={event.name}
-                startAt={event.startAt}
-                endAt={event.endAt}
+                date={event.date}
                 location={event.location}
-                price={event.price}
+                free={event.free}
+                image={event.image}
                 category={event.category}
-                picture={event.picture}
               />
             </div>
           ))}
         </div>
-      </div>
+      </EventsSection>
 
       {/* Special Events Section */}
-      <div className="px-4 mt-6">
-        <div className="flex justify-between items-center mb-2">
-          <h2 className="text-lg font-bold">Special Events</h2>
-          <Link href="/events" className="text-sm text-primary-500">View All</Link>
-        </div>
-
+      <EventsSection title="Special Events" viewAllLink="/events">
         {specialEvents.map((event) => (
-          <Card 
-            key={event.id} 
-            className="w-full mb-4"
-            isPressable 
-            onPress={() => window.location.href = `/events/${event.id}`}
-          >
-            <CardBody className="flex flex-row items-center p-3">
-              <div className="w-24 h-24 relative mr-4">
-                <Image 
-                  src={event.picture} 
-                  alt={event.name}
-                  fill
-                  className="object-cover rounded-lg"
-                />
-              </div>
-              <div className="flex-1">
-                <Chip 
-                  color={
-                    event.category === 'Food' ? 'success' :
-                    event.category === 'Music' ? 'secondary' :
-                    event.category === 'Sports' ? 'warning' : 'primary'
-                  } 
-                  variant="flat" 
-                  size="sm"
-                  className="mb-2"
-                >
-                  {event.category}
-                </Chip>
-                <h3 className="font-semibold">{event.name}</h3>
-                <div className="flex items-center text-xs text-gray-500 mt-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  {event.startAt.toLocaleDateString()}
-                </div>
-                <div className="flex items-center text-xs text-gray-500 mt-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  {event.location}
-                </div>
-              </div>
-            </CardBody>
-          </Card>
+          <SpecialEventCard
+            key={event.id}
+            id={event.id}
+            name={event.name}
+            date={event.date}
+            location={event.location}
+            category={event.category}
+            image={event.image}
+          />
         ))}
-      </div>
+      </EventsSection>
 
       {/* Categories Section */}
-      <div className="px-4 mt-6 mb-20">
-        <div className="flex justify-between items-center mb-2">
-          <h2 className="text-lg font-bold">Categories</h2>
-          <Link href="/categories" className="text-sm text-primary-500">View All</Link>
-        </div>
-        <div className="grid grid-cols-3 gap-3">
-          {[
-            { name: 'Music', icon: '🎵', color: 'primary' },
-            { name: 'Food', icon: '🍔', color: 'success' },
-            { name: 'Sports', icon: '⚽', color: 'warning' },
-            { name: 'Arts', icon: '🎨', color: 'secondary' },
-            { name: 'Tech', icon: '💻', color: 'danger' },
-            { name: 'Outdoor', icon: '🏕️', color: 'default' }
-          ].map((category) => (
-            <Button 
-              key={category.name}
-              variant="flat"
-              color={category.color as any}
-              className="flex flex-col items-center justify-center h-24"
-              as={Link}
-              href={`/categories/${category.name.toLowerCase()}`}
-            >
-              <span className="text-2xl mb-2">{category.icon}</span>
-              <span className="text-xs">{category.name}</span>
-            </Button>
-          ))}
-        </div>
-      </div>
+      <EventsSection title="Categories" viewAllLink="/categories">
+        <CategoryGrid categories={categories} />
+      </EventsSection>
 
       {/* Bottom Navigation Bar */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-2">
