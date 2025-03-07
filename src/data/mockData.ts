@@ -6,11 +6,11 @@ export interface Event {
   name: string;
   date: string;
   location: string;
-  free?: boolean;
-  live?: boolean;
+  free: boolean;
+  live: boolean;
   image: string;
-  category?: string;
-  invitation?: boolean;
+  category: string;
+  invitation: boolean;
   description?: string;
 }
 
@@ -33,6 +33,7 @@ export const featuredEvents: Event[] = [
     image: '/images/political-event-1.jpg',
     live: false,
     category: 'Démocratie',
+    invitation: false,
     description:
       'Un débat national sur les grands enjeux de la démocratie participative en France.',
   },
@@ -45,6 +46,7 @@ export const featuredEvents: Event[] = [
     image: '/images/political-event-2.jpg',
     live: true,
     category: 'Participation',
+    invitation: false,
     description:
       "Un forum permettant aux citoyens de s'exprimer et d'échanger sur des thématiques locales.",
   },
@@ -59,6 +61,8 @@ export const specialEvents: Event[] = [
     date: '12 Mai 2025',
     location: 'Bordeaux, France',
     free: true,
+    live: false,
+    invitation: false,
     image: '/images/political-event-3.jpg',
     description: 'Une conférence sur les enjeux climatiques et les solutions à mettre en place.',
   },
@@ -68,6 +72,8 @@ export const specialEvents: Event[] = [
     category: 'Économie',
     date: '20 Mai 2025',
     location: 'Marseille, France',
+    free: false,
+    live: false,
     invitation: true,
     image: '/images/political-event-4.jpg',
     description: 'Un sommet réunissant des experts pour discuter des perspectives économiques.',
@@ -79,6 +85,8 @@ export const specialEvents: Event[] = [
     date: '25 Mai 2025',
     location: 'Toulouse, France',
     free: true,
+    live: false,
+    invitation: false,
     image: '/images/political-event-5.jpg',
     description: 'Un forum dédié aux jeunes et à leur place dans la société.',
   },
@@ -93,6 +101,9 @@ export const upcomingEvents: Event[] = [
     location: 'Nantes, France',
     image: '/images/political-event-6.jpg',
     category: 'Environnement',
+    free: true,
+    live: false,
+    invitation: false,
     description: 'Une conférence sur les enjeux de la transition écologique dans notre société.',
   },
   {
@@ -102,6 +113,9 @@ export const upcomingEvents: Event[] = [
     location: 'Strasbourg, France',
     image: '/images/political-event-7.jpg',
     category: 'Jeunesse',
+    free: true,
+    live: false,
+    invitation: false,
     description: "Un forum national pour permettre aux jeunes de s'exprimer sur leur avenir.",
   },
 ];

@@ -12,8 +12,8 @@ interface SpecialEventProps {
   location: string;
   category: string;
   image: string;
-  free?: boolean;
-  invitation?: boolean;
+  free: boolean;
+  invitation: boolean;
   onClick?: (id: string) => void;
 }
 
@@ -24,8 +24,8 @@ const SpecialEventCard: React.FC<SpecialEventProps> = ({
   location,
   category,
   image,
-  free = false,
-  invitation = false,
+  free,
+  invitation,
   onClick = (id) => (window.location.href = `/events/${id}`),
 }) => {
   // Déterminer la couleur de la catégorie

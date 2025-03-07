@@ -34,6 +34,7 @@ export default function EventsPage() {
       date: '30 April 2023',
       location: 'TIM Park, Jakarta, Indonesia',
       free: false,
+      live: false,
       image: '/images/event-photos/event-photo-1.jpg',
       category: 'Music',
       price: 235,
@@ -44,6 +45,7 @@ export default function EventsPage() {
       date: '21 January 2023',
       location: 'Jakarta, Indonesia',
       free: false,
+      live: true,
       image: '/images/event-photos/event-photo-2.jpg',
       category: 'Food',
       price: 23,
@@ -59,6 +61,8 @@ export default function EventsPage() {
       location: 'Jakarta, Indonesia',
       category: 'Music',
       image: '/images/event-photos/event-photo-3.jpg',
+      free: false,
+      invitation: true,
     },
     {
       id: '4',
@@ -67,6 +71,8 @@ export default function EventsPage() {
       location: 'Jakarta, Indonesia',
       category: 'Food',
       image: '/images/event-photos/event-photo-4.jpg',
+      free: true,
+      invitation: false,
     },
     {
       id: '5',
@@ -75,6 +81,8 @@ export default function EventsPage() {
       location: 'Jakarta, Indonesia',
       category: 'Music',
       image: '/images/event-photos/event-photo-5.jpg',
+      free: false,
+      invitation: false,
     },
   ];
 
@@ -203,6 +211,7 @@ export default function EventsPage() {
                 date={event.date}
                 location={event.location}
                 free={event.free}
+                live={event.live}
                 image={event.image}
                 category={event.category}
               />
@@ -222,6 +231,8 @@ export default function EventsPage() {
             location={event.location}
             category={event.category}
             image={event.image}
+            free={event.free}
+            invitation={event.invitation}
           />
         ))}
       </EventsSection>

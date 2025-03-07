@@ -68,10 +68,9 @@ interface PageProps {
   params: {
     id: string;
   };
-  searchParams: { [key: string]: string | string[] | undefined };
 }
 
-export default async function EventDetailPage({ params, searchParams }: PageProps) {
+export default async function EventDetailPage({ params }: PageProps) {
   const eventId = params.id;
   const event = await getEvent(eventId);
   const photos = await getEventPhotos(eventId);

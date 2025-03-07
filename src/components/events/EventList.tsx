@@ -10,7 +10,7 @@ export interface Event {
   id: string;
   name: string;
   description: string;
-  picture?: string;
+  picture: string | undefined;
   address: unknown;
   startAt: Date;
   endAt: Date;
@@ -155,7 +155,7 @@ const EventList: React.FC<EventListProps> = ({ events, loading = false }) => {
                   id={event.id}
                   name={event.name}
                   description={event.description}
-                  picture={event.picture}
+                  picture={event.picture || '/images/default-event.jpg'}
                   startAt={event.startAt}
                   endAt={event.endAt}
                 />

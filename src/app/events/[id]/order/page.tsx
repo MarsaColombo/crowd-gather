@@ -24,7 +24,7 @@ interface Package {
 
 export default function EventOrderPage() {
   const params = useParams();
-  const eventId = params.id as string;
+  const eventId = params['id'] as string;
 
   const [isLoading, setIsLoading] = useState(true);
   const [event, setEvent] = useState<Event | null>(null);

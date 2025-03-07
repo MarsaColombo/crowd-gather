@@ -10,10 +10,10 @@ interface FeaturedEventProps {
   name: string;
   date: string;
   location: string;
-  free?: boolean;
-  live?: boolean;
+  free: boolean;
+  live: boolean;
   image: string;
-  category?: string;
+  category: string | undefined;
   onClick?: (id: string) => void;
 }
 
@@ -22,8 +22,8 @@ const FeaturedEventCard: React.FC<FeaturedEventProps> = ({
   name,
   date,
   location,
-  free = false,
-  live = false,
+  free,
+  live,
   image,
   category,
   onClick = (id) => (window.location.href = `/events/${id}`),

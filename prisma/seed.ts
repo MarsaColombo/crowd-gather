@@ -129,6 +129,11 @@ async function main() {
       const startAt = new Date(Date.now() + Math.random() * 90 * 24 * 60 * 60 * 1000);
       const endAt = new Date(startAt.getTime() + (Math.random() * 3 + 1) * 60 * 60 * 1000);
 
+      // Ensure city exists before using it
+      if (!city) {
+        throw new Error('No city selected for event creation');
+      }
+
       return prisma.event.create({
         data: {
           name: `${type} : ${theme} à ${city.name}`,
