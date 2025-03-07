@@ -126,11 +126,7 @@ export default function Home() {
       </EventsSection>
 
       {/* Upcoming Events Section */}
-      <EventsSection
-        title="Événements à venir"
-        viewAllLink="/events/upcoming"
-        viewAllText="Tout voir"
-      >
+      <EventsSection title="Événements à venir" viewAllLink="/events/upcoming">
         {loadingUpcoming ? (
           <LoadingIndicator />
         ) : (

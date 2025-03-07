@@ -16,12 +16,11 @@ import {
   ModalFooter,
   useDisclosure,
 } from '@heroui/react';
-import Navbar from '@/components/Navbar';
-import BottomNavigation from '@/components/layout/BottomNavigation';
 import FeaturedEventCard from '@/components/events/FeaturedEventCard';
 import SpecialEventCard from '@/components/events/SpecialEventCard';
 import CategoryGrid from '@/components/categories/CategoryGrid';
 import EventsSection from '@/components/events/EventsSection';
+import type { Category } from '@/data/mockData';
 
 export default function EventsPage() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -80,13 +79,13 @@ export default function EventsPage() {
   ];
 
   // Categories
-  const categories = [
+  const categories: Category[] = [
     { name: 'Music', icon: '🎵', color: 'primary' },
     { name: 'Food', icon: '🍔', color: 'success' },
     { name: 'Sports', icon: '⚽', color: 'warning' },
     { name: 'Arts', icon: '🎨', color: 'secondary' },
     { name: 'Tech', icon: '💻', color: 'danger' },
-    { name: 'Outdoor', icon: '🏕️', color: 'default' },
+    { name: 'Outdoor', icon: '🏕️', color: 'primary' },
   ];
 
   // Handler pour le changement de recherche

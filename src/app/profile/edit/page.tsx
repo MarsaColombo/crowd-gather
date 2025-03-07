@@ -11,7 +11,6 @@ import {
   ModalContent,
   ModalHeader,
   ModalBody,
-  ModalFooter,
   useDisclosure,
   Radio,
   RadioGroup,

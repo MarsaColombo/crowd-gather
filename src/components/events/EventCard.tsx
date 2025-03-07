@@ -24,7 +24,6 @@ const EventCard: React.FC<EventCardProps> = ({
   name,
   picture = '/images/default-event.jpg',
   startAt,
-  endAt,
   location = 'Location not specified',
   price,
   category,

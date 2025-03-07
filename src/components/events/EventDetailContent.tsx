@@ -4,12 +4,11 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Button, Card, CardBody, Tabs, Tab, Chip, Divider } from '@heroui/react';
+import { Button, Card, CardBody, Tabs, Tab } from '@heroui/react';
 import EventDetailMap from './EventDetailMap';
-import EventCameraButton from './EventCameraButton';
 import EventQRCode from './EventQRCode';
 import EventPhotosGallery from './EventPhotosGallery';
-
+import { EventCameraButton } from './EventCameraButton';
 interface EventDetailProps {
   event: {
     id: string;
@@ -33,6 +32,16 @@ interface EventDetailProps {
 
 const EventDetailComponent: React.FC<EventDetailProps> = ({ event, photos }) => {
   const [activeTab, setActiveTab] = useState<'about' | 'photos' | 'map' | 'qrcode'>('about');
+
+  const handlePhotoUpload = async (photo: Blob) => {
+    try {
+      // Here you would typically upload the photo to your server
+      console.warn('Photo upload not implemented:', photo);
+      // After successful upload, you might want to refresh the photos list
+    } catch (error) {
+      console.error('Error uploading photo:', error);
+    }
+  };
 
   // Format date for display
   const formatDate = (dateString: string) => {
@@ -201,7 +210,9 @@ const EventDetailComponent: React.FC<EventDetailProps> = ({ event, photos }) => 
           aria-label="Event Details"
           color="primary"
           selectedKey={activeTab}
-          onSelectionChange={(key) => setActiveTab(key.toString() as any)}
+          onSelectionChange={(key) =>
+            setActiveTab(key.toString() as 'about' | 'photos' | 'map' | 'qrcode')
+          }
           className="w-full"
           variant="underlined"
         >
@@ -319,7 +330,7 @@ const EventDetailComponent: React.FC<EventDetailProps> = ({ event, photos }) => 
             <div className="py-4">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-lg font-bold">Photos Gallery</h2>
-                <EventCameraButton eventId={event.id} />
+                <EventCameraButton eventId={event.id} onPhotoCapture={handlePhotoUpload} />
               </div>
               <EventPhotosGallery photos={photos} />
             </div>

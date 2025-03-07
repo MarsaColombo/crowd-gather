@@ -4,7 +4,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Tabs, Tab, Card, CardBody, CardHeader, Button, Chip, Badge } from '@heroui/react';
+import { Tabs, Tab, Card, CardBody, CardHeader, Button, Chip } from '@heroui/react';
+import type { Key } from '@react-types/shared';
 
 // Mock event data
 const upcomingEvents = [
@@ -54,7 +55,7 @@ const pastEvents = [
 ];
 
 export default function MyEventsPage() {
-  const [selectedTab, setSelectedTab] = useState('upcoming');
+  const [selectedTab, setSelectedTab] = useState<Key>('upcoming');
 
   return (
     <div className="min-h-screen bg-white">
@@ -67,7 +68,7 @@ export default function MyEventsPage() {
       <Tabs
         aria-label="My Events Tabs"
         selectedKey={selectedTab}
-        onSelectionChange={setSelectedTab}
+        onSelectionChange={(key: Key) => setSelectedTab(key)}
         className="w-full p-0"
         variant="underlined"
         color="primary"
@@ -370,7 +371,7 @@ export default function MyEventsPage() {
                   />
                 </svg>
                 <h3 className="mt-4 text-lg font-medium">No past events</h3>
-                <p className="mt-2 text-gray-500">You haven't attended any events yet.</p>
+                <p className="mt-2 text-gray-500">You haven&apos;t attended any events yet.</p>
               </div>
             )}
           </div>

@@ -16,7 +16,6 @@ interface PageLayoutProps {
 const PageLayout: React.FC<PageLayoutProps> = ({
   children,
   title,
-  showBackButton = false,
   showNavbar = true,
   loading = false,
   className = '',
@@ -24,7 +23,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({
   return (
     <div className="min-h-screen flex flex-col">
       {/* En-tête fixe */}
-      {showNavbar && <Navbar title={title} showBackButton={showBackButton} />}
+      {showNavbar && <Navbar title={title} />}
 
       {/* Contenu principal qui prend tout l'espace disponible */}
       <main className={`flex-grow pt-16 ${className}`}>

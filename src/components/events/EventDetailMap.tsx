@@ -46,6 +46,7 @@ const EventDetailMap: React.FC<EventDetailMapProps> = ({ coordinates, eventName 
         map.remove();
       };
     }
+    return undefined; // Explicit return for when map is not initialized
   }, [latitude, longitude, eventName]);
 
   return (

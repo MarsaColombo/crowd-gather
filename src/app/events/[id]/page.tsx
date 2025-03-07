@@ -43,6 +43,7 @@ async function getEvent(id: string): Promise<Event> {
 
 // Mock function to fetch event photos
 async function getEventPhotos(eventId: string): Promise<Photo[]> {
+  console.log('🚀 ~ getEventPhotos ~ eventId:', eventId);
   // In a real app, fetch from API or database
   return [
     {

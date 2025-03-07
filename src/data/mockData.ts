@@ -14,10 +14,12 @@ export interface Event {
   description?: string;
 }
 
+type CategoryColor = 'primary' | 'secondary' | 'danger' | 'warning' | 'success';
+
 export interface Category {
   name: string;
   icon: string;
-  color: string;
+  color: CategoryColor;
 }
 
 // Événements mis en avant
@@ -111,7 +113,7 @@ export const categories: Category[] = [
   { name: 'Social', icon: '👥', color: 'secondary' },
   { name: 'Économie', icon: '💼', color: 'warning' },
   { name: 'Droits', icon: '✊', color: 'danger' },
-  { name: 'Régional', icon: '🏛️', color: 'default' },
+  { name: 'Régional', icon: '🏛️', color: 'primary' },
 ];
 
 // Fonction simulant un appel API pour récupérer les événements

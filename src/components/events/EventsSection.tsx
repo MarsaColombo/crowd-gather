@@ -1,32 +1,35 @@
 // src/components/events/EventsSection.tsx
 'use client';
 
-import React, { ReactNode } from 'react';
+import React from 'react';
 import Link from 'next/link';
+import { Button } from '@heroui/react';
 
 interface EventsSectionProps {
-  title: any;
-  viewAllLink: string;
-  viewAllText?: string;
-  children: ReactNode;
+  title: string;
+  viewAllLink?: string;
+  children: React.ReactNode;
 }
 
-const EventsSection: React.FC<EventsSectionProps> = ({
-  title,
-  viewAllLink,
-  viewAllText = 'Voir Plus',
-  children,
-}) => {
+const EventsSection: React.FC<EventsSectionProps> = ({ title, viewAllLink, children }) => {
   return (
-    <div className="px-4 mt-4">
-      <div className="flex justify-between items-center mb-2">
-        <h2 className="text-base font-bold">{title}</h2>
-        <Link href={viewAllLink} className="text-sm text-primary-500">
-          {viewAllText}
-        </Link>
+    <section className="px-4 py-6">
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-xl font-bold">{title}</h2>
+        {viewAllLink && (
+          <Button
+            as={Link}
+            href={viewAllLink}
+            variant="light"
+            color="primary"
+            className="font-medium"
+          >
+            View All
+          </Button>
+        )}
       </div>
       {children}
-    </div>
+    </section>
   );
 };
 

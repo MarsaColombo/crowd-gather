@@ -7,9 +7,10 @@ import { Button, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter } from
 
 interface EventCameraButtonProps {
   eventId: string;
+  onPhotoCapture?: (photo: Blob) => void;
 }
 
-const EventCameraButton: React.FC<EventCameraButtonProps> = ({ eventId }) => {
+export const EventCameraButton: React.FC<EventCameraButtonProps> = ({ onPhotoCapture }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
@@ -80,15 +81,9 @@ const EventCameraButton: React.FC<EventCameraButtonProps> = ({ eventId }) => {
     try {
       setUploading(true);
 
-      // In a real implementation, you would create a FormData object and upload to your server/Cloudinary
-      // Example:
-      // const formData = new FormData();
-      // formData.append('file', dataURLtoBlob(capturedImage));
-      // formData.append('eventId', eventId);
-      // const response = await fetch('/api/upload', { method: 'POST', body: formData });
-
-      // For this example, simulate a loading delay
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      // Convert data URL to blob and call onPhotoCapture
+      const blob = await fetch(capturedImage).then((r) => r.blob());
+      onPhotoCapture?.(blob);
 
       // Simulate successful upload
       setUploadSuccess(true);
@@ -103,21 +98,6 @@ const EventCameraButton: React.FC<EventCameraButtonProps> = ({ eventId }) => {
       setUploading(false);
       alert('Error uploading the image. Please try again.');
     }
-  };
-
-  // Helper function to convert Data URL to Blob
-  const dataURLtoBlob = (dataURL: string) => {
-    const arr = dataURL.split(',');
-    const mime = arr[0].match(/:(.*?);/)![1];
-    const bstr = atob(arr[1]);
-    let n = bstr.length;
-    const u8arr = new Uint8Array(n);
-
-    while (n--) {
-      u8arr[n] = bstr.charCodeAt(n);
-    }
-
-    return new Blob([u8arr], { type: mime });
   };
 
   return (
@@ -212,5 +192,3 @@ const EventCameraButton: React.FC<EventCameraButtonProps> = ({ eventId }) => {
     </>
   );
 };
-
-export default EventCameraButton;

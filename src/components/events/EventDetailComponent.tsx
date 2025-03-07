@@ -16,7 +16,7 @@ import {
   Tooltip,
 } from '@heroui/react';
 import EventDetailMap from './EventDetailMap';
-import EventCameraButton from './EventCameraButton';
+import { EventCameraButton } from './EventCameraButton';
 import EventQRCode from './EventQRCode';
 import EventPhotosGallery from './EventPhotosGallery';
 

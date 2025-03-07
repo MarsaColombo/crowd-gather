@@ -2,8 +2,16 @@
 import React from 'react';
 import { Button } from '@heroui/react';
 
+type SocialButtonColor = 'primary' | 'secondary' | 'danger';
+
+interface SocialLogin {
+  name: string;
+  icon: React.ReactNode;
+  color: SocialButtonColor;
+}
+
 const SocialLoginButtons = () => {
-  const socialLogins = [
+  const socialLogins: SocialLogin[] = [
     {
       name: 'Google',
       icon: (
@@ -55,7 +63,7 @@ const SocialLoginButtons = () => {
         <Button
           key={social.name}
           variant="bordered"
-          color={social.color as any}
+          color={social.color}
           className="flex-1"
           startContent={social.icon}
         >

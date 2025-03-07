@@ -29,7 +29,7 @@ const SpecialEventCard: React.FC<SpecialEventProps> = ({
   onClick = (id) => (window.location.href = `/events/${id}`),
 }) => {
   // Déterminer la couleur de la catégorie
-  const getCategoryColor = (category: string) => {
+  const getCategoryColor = (category: string): 'success' | 'warning' | 'danger' | 'primary' => {
     switch (category) {
       case 'Environnement':
         return 'success';
@@ -49,7 +49,7 @@ const SpecialEventCard: React.FC<SpecialEventProps> = ({
           <Image src={image} alt={name} fill className="object-cover rounded-lg" />
         </div>
         <div className="flex-1">
-          <Chip color={getCategoryColor(category) as any} variant="flat" size="sm" className="mb-2">
+          <Chip color={getCategoryColor(category)} variant="flat" size="sm" className="mb-2">
             {category}
           </Chip>
           <h3 className="font-semibold text-sm">{name}</h3>

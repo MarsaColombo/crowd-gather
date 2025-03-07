@@ -1,5 +1,5 @@
 {
-  "typescript.validate.enable": false,
+  "typescript.validate.enable": true,
   "javascript.validate.enable": false,
   "eslint.enable": false,
   "editor.formatOnSave": false,
@@ -14,7 +14,7 @@
   "editor.suggestOnTriggerCharacters": false,
   "editor.wordBasedSuggestions": "off",
   "editor.parameterHints.enabled": false,
-  "editor.diagnostics.enabled": false,
+  "editor.diagnostics.enabled": true,
   "cSpell.enabled": false,
   "cSpell.words": ["heroui", "tailwindcss", "nextjs", "vercel", "prisma", "cloudinary"]
 }

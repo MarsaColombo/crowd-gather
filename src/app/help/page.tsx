@@ -3,8 +3,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { Input, Card, CardBody, Button, Accordion, AccordionItem } from '@heroui/react';
+import { Input, Card, Accordion, AccordionItem } from '@heroui/react';
 
 export default function HelpCenterPage() {
   const [searchTerm, setSearchTerm] = useState('');

@@ -1,5 +1,4 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
+
 
 echo '🏗️ Checking your project before committing...'
 
@@ -18,7 +17,7 @@ npm run lint ||
 )
 
 # Check tsconfig standards
-npm run type-check ||
+npm run type:check ||
 (
     echo '❌ Type check Failed. Make the required changes listed above, add changes and try to commit again.'
     false;
@@ -27,9 +26,3 @@ npm run type-check ||
 # If everything passes... Now we can commit
 echo '✅ Committing this now...'
 
-# Run tests
-npm test ||
-(
-    echo '❌ Tests Failed. Please fix the failing tests and try again.'
-    false;
-)

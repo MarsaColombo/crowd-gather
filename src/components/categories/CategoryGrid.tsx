@@ -5,10 +5,12 @@ import React from 'react';
 import Link from 'next/link';
 import { Button } from '@heroui/react';
 
+type CategoryColor = 'primary' | 'secondary' | 'danger' | 'warning' | 'success';
+
 interface Category {
   name: string;
   icon: string;
-  color: string;
+  color: CategoryColor;
 }
 
 interface CategoryGridProps {
@@ -22,7 +24,7 @@ const CategoryGrid: React.FC<CategoryGridProps> = ({ categories }) => {
         <Button
           key={category.name}
           variant="flat"
-          color={category.color as any}
+          color={category.color}
           className="flex flex-col items-center justify-center h-24"
           as={Link}
           href={`/categories/${category.name.toLowerCase()}`}

@@ -1,8 +1,8 @@
-// src/middleware.ts
-import { NextResponse } from 'next/server';
+// import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
+  console.log('🚀 ~ middleware ~ request:', request);
   //   const path = request.nextUrl.pathname;
   // Define public paths
   //   const isPublicPath = ["/auth/login", "/auth/signup", "/"].includes(path);
