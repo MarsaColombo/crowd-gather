@@ -1,16 +1,1 @@
-{
-  "buildCommand": "npm run build",
-  "installCommand": "npm install",
-  "framework": "nextjs",
-  "builds": [
-    {
-      "src": "next.config.ts",
-      "use": "@vercel/next"
-    }
-  ],
-  "build": {
-    "env": {
-      "PRISMA_GENERATE": "true"
-    }
-  }
-} 
+{ "build": { "env": { "PRISMA_GENERATE": "true" } } }
