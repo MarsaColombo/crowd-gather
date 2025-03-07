@@ -64,11 +64,10 @@ async function getEventPhotos(eventId: string): Promise<Photo[]> {
   ]);
 }
 
-interface PageProps {
-  params: {
-    id: string;
-  };
-}
+type PageProps = {
+  params: { id: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
+};
 
 export default async function EventDetailPage({ params }: PageProps) {
   const eventId = params.id;
