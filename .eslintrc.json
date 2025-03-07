@@ -33,7 +33,7 @@
     ],
     "react/no-unescaped-entities": "off",
     "no-console": ["warn", { "allow": ["warn", "error"] }],
-    
+
     // Promise-specific rules
     "promise/always-return": "error",
     "promise/no-return-wrap": "error",
